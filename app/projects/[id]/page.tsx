@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectById, projects } from "../../data/projects";
+import ProjectGallery from "../../components/ProjectGallery";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -14,9 +15,7 @@ export function generateStaticParams() {
   }));
 }
 
-export default async function ProjectPage({
-  params,
-}: ProjectPageProps) {
+export default async function ProjectPage({ params }: ProjectPageProps) {
   const { id } = await params;
   const project = getProjectById(id);
 
@@ -26,13 +25,10 @@ export default async function ProjectPage({
 
   const currentIndex = projects.findIndex((item) => item.id === project.id);
 
-  const previousProject =
-    currentIndex > 0 ? projects[currentIndex - 1] : null;
+  const previousProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
 
   const nextProject =
-    currentIndex < projects.length - 1
-      ? projects[currentIndex + 1]
-      : null;
+    currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
   const [coverImage, ...galleryImages] = project.images;
 
@@ -73,7 +69,7 @@ export default async function ProjectPage({
                   {project.location} · {project.year}
                 </p>
 
-                <h1 className="mt-5 max-w-5xl text-5xl font-medium leading-[0.98] tracking-[-0.05em] sm:text-6xl lg:text-[88px]">
+                <h1 className="mt-5 max-w-5xl text-5xl  font-dachi leading-[0.98] tracking-[-0.05em] sm:text-6xl">
                   {project.title}
                 </h1>
               </div>
@@ -93,7 +89,7 @@ export default async function ProjectPage({
       <section className="mx-auto max-w-[1800px] px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
         <div className="grid gap-14 border-b border-black/10 pb-20 lg:grid-cols-[0.55fr_1.45fr]">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.24em] text-[#a06f50]">
+            <span className="text-[10px]  font-dachi uppercase tracking-[0.24em] text-[#a06f50]">
               პროექტის შესახებ
             </span>
           </div>
@@ -110,9 +106,7 @@ export default async function ProjectPage({
                     მდებარეობა
                   </p>
 
-                  <p className="mt-3 text-lg">
-                    {project.location}
-                  </p>
+                  <p className="mt-3 text-lg">{project.location}</p>
                 </div>
 
                 <div>
@@ -120,9 +114,7 @@ export default async function ProjectPage({
                     წელი
                   </p>
 
-                  <p className="mt-3 text-lg">
-                    {project.year}
-                  </p>
+                  <p className="mt-3 text-lg">{project.year}</p>
                 </div>
               </div>
 
@@ -135,7 +127,7 @@ export default async function ProjectPage({
                   {project.materials.map((material) => (
                     <span
                       key={material}
-                      className="border border-black/10 bg-[#f8f5ef] px-4 py-3 text-xs"
+                      className="border border-black/10 bg-[#f8f5ef] px-4 py-3 text-xs rounded-sm"
                     >
                       {material}
                     </span>
@@ -147,103 +139,92 @@ export default async function ProjectPage({
         </div>
       </section>
 
-{/* Gallery */}
-{project.images.length > 0 && (
-  <section className="mx-auto max-w-[1800px] px-5 pb-24 sm:px-8 lg:px-10 lg:pb-32">
-    <div className="mb-10 flex items-end justify-between border-b border-black/10 pb-6">
-      <div>
-        <span className="text-[10px] uppercase tracking-[0.24em] text-[#a06f50]">
-          დეტალები
-        </span>
+      {/* Gallery */}
+      {project.images.length > 0 && (
+        <section className="mx-auto max-w-[1800px] px-5 pb-24 sm:px-8 lg:px-10 lg:pb-32">
+          <div className="mb-10 flex items-end justify-between border-b border-black/10 pb-6">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.24em] text-[#a06f50]  font-dachi">
+                დეტალები
+              </span>
 
-        <h2 className="mt-3 text-4xl font-medium tracking-[-0.035em] sm:text-5xl">
-          პროექტის გალერეა
-        </h2>
-      </div>
+              <h2 className="mt-3 text-4xl font-medium tracking-[-0.035em] sm:text-5xl  font-dachi">
+                პროექტის გალერეა
+              </h2>
+            </div>
 
-      <p className="hidden text-sm text-[#7a736b] sm:block">
-        {project.images.length} ფოტო
-      </p>
-    </div>
+            <p className="hidden text-sm text-[#7a736b] sm:block">
+              {project.images.length} ფოტო
+            </p>
+          </div>
 
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {project.images.map((image, index) => (
-        <div
-          key={`${project.id}-gallery-${index}`}
-          className="group aspect-[4/3] overflow-hidden bg-[#ddd6cc]"
-        >
-          <img
-            src={image}
-            alt={`${project.title} — ფოტო ${index + 1}`}
-            className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+          <ProjectGallery
+            images={project.images}
+            projectId={project.id}
+            title={project.title}
           />
+        </section>
+      )}
+      {/* Previous / Next */}
+      <section className="bg-[#f5f1ea] text-[#24211d]">
+        <div className="mx-auto max-w-[1800px] px-5 py-20 sm:px-8 lg:px-10">
+          <div className="border-t border-black/10 pt-10">
+            <p className="mb-8 text-xs uppercase tracking-[0.25em] text-[#9b7458]">
+              სხვა პროექტები
+            </p>
+
+            <div className="grid gap-6 lg:grid-cols-2">
+              {/* Previous */}
+              {previousProject && (
+                <Link
+                  href={`/projects/${previousProject.id}`}
+                  className="group border border-black/10 bg-white p-8 transition duration-300 hover:border-[#a06f50] hover:shadow-lg"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-[#9b7458]">
+                        ← წინა პროექტი
+                      </p>
+
+                      <h3 className="mt-5 text-2xl font-medium transition group-hover:text-[#a06f50] font-dachi">
+                        {previousProject.title}
+                      </h3>
+                    </div>
+
+                    <span className="text-6xl font-light text-[#d7c2af] ">
+                      {previousProject.id}
+                    </span>
+                  </div>
+                </Link>
+              )}
+
+              {/* Next */}
+              {nextProject && (
+                <Link
+                  href={`/projects/${nextProject.id}`}
+                  className="group border border-black/10 bg-white p-8 transition duration-300 hover:border-[#a06f50] hover:shadow-lg"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-6xl font-light text-[#d7c2af]">
+                      {nextProject.id}
+                    </span>
+
+                    <div className="text-right">
+                      <p className="text-xs uppercase tracking-[0.2em] text-[#9b7458]">
+                        შემდეგი პროექტი →
+                      </p>
+
+                      <h3 className="mt-5 text-2xl font-medium transition group-hover:text-[#a06f50] font-dachi">
+                        {nextProject.title}
+                      </h3>
+                    </div>
+                  </div>
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
-      ))}
-    </div>
-  </section>
-)}
-{/* Previous / Next */}
-<section className="bg-[#f5f1ea] text-[#24211d]">
-  <div className="mx-auto max-w-[1800px] px-5 py-20 sm:px-8 lg:px-10">
-    <div className="border-t border-black/10 pt-10">
-      <p className="mb-8 text-xs uppercase tracking-[0.25em] text-[#9b7458]">
-        სხვა პროექტები
-      </p>
-
-      <div className="grid gap-6 lg:grid-cols-2">
-
-        {/* Previous */}
-        {previousProject && (
-          <Link
-            href={`/projects/${previousProject.id}`}
-            className="group border border-black/10 bg-white p-8 transition duration-300 hover:border-[#a06f50] hover:shadow-lg"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-[#9b7458]">
-                  ← წინა პროექტი
-                </p>
-
-                <h3 className="mt-5 text-3xl font-medium transition group-hover:text-[#a06f50]">
-                  {previousProject.title}
-                </h3>
-              </div>
-
-              <span className="text-6xl font-light text-[#d7c2af]">
-                {previousProject.id}
-              </span>
-            </div>
-          </Link>
-        )}
-
-        {/* Next */}
-        {nextProject && (
-          <Link
-            href={`/projects/${nextProject.id}`}
-            className="group border border-black/10 bg-white p-8 transition duration-300 hover:border-[#a06f50] hover:shadow-lg"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-6xl font-light text-[#d7c2af]">
-                {nextProject.id}
-              </span>
-
-              <div className="text-right">
-                <p className="text-xs uppercase tracking-[0.2em] text-[#9b7458]">
-                  შემდეგი პროექტი →
-                </p>
-
-                <h3 className="mt-5 text-3xl font-medium transition group-hover:text-[#a06f50]">
-                  {nextProject.title}
-                </h3>
-              </div>
-            </div>
-          </Link>
-        )}
-
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
       {/* CTA */}
       <section className="bg-[#24211d] text-[#f5f1ea]">
         <div className="mx-auto grid max-w-[1800px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:px-10 lg:py-24">
@@ -252,11 +233,9 @@ export default async function ProjectPage({
               თქვენი პროექტი
             </span>
 
-            <h2 className="mt-5 max-w-4xl text-4xl font-medium leading-[1.05] tracking-[-0.04em] sm:text-5xl lg:text-7xl">
+            <h2 className="mt-5 max-w-4xl text-4xl font-medium leading-[1.05] tracking-[-0.04em] sm:text-5xl  font-dachi">
               გსურთ მსგავსი სამზარეულოს შექმნა?
-              <span className="block font-serif italic text-[#c69a7b]">
-                
-              </span>
+              <span className="block font-serif italic text-[#c69a7b]"></span>
             </h2>
           </div>
 
@@ -271,8 +250,6 @@ export default async function ProjectPage({
           </div>
         </div>
       </section>
-
-
     </main>
   );
 }

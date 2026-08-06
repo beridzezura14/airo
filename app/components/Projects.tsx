@@ -42,7 +42,7 @@ export default function Projects() {
             return (
               <article
                 key={project.id}
-                className="group overflow-hidden border border-black/10 bg-[#faf7f1] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(36,33,29,0.09)]"
+                className="project-card group overflow-hidden rounded-[1.125rem] border border-black/10 bg-[#faf7f1] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(36,33,29,0.09)]"
               >
                 {/* Project slider */}
                 <div className="project-slider relative aspect-[4/3] overflow-hidden bg-[#ddd6cc]">
@@ -88,7 +88,7 @@ export default function Projects() {
                   </Swiper>
 
                   {/* Project number */}
-                  <div className="pointer-events-none absolute left-4 top-4 z-10 flex items-center gap-2 bg-[#f5f1ea]/95 px-3 py-2 backdrop-blur-sm">
+                  <div className="pointer-events-none rounded-sm absolute left-4 top-4 z-10 flex items-center gap-2 bg-[#f5f1ea]/95 px-3 py-2 backdrop-blur-sm">
                     <span className="text-[10px] font-semibold tracking-[0.18em] text-[#765b49]">
                       {project.id}
                     </span>
@@ -121,7 +121,7 @@ export default function Projects() {
                     {project.materials.map((material, materialIndex) => (
                       <span
                         key={`${project.id}-${material}-${materialIndex}`}
-                        className="border border-black/10 px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-[#665f57]"
+                        className="border rounded-sm border-black/10 px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-[#665f57]"
                       >
                         {material}
                       </span>
@@ -152,7 +152,6 @@ export default function Projects() {
             className="flex min-h-14 items-center justify-between gap-14 border border-black/20 px-7 text-sm font-medium transition hover:border-[#a06f50] hover:bg-[#a06f50] hover:text-white"
           >
             ყველა ნამუშევრის ნახვა
-            <span>→</span>
           </Link>
         </div>
       </div>

@@ -1,4 +1,16 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const heroSlides = [
+  "/hero.jpg",
+  "/project6.jpg",
+  "/project7.jpg",
+  "/project8.jpg",
+  "/project9.jpg",
+  "/project5.jpg",
+];
 
 const services = [
   {
@@ -20,13 +32,33 @@ const services = [
 ];
 
 export default function Hero() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroSlides.length);
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const showPreviousSlide = () => {
+    setActiveSlide(
+      (current) => (current - 1 + heroSlides.length) % heroSlides.length,
+    );
+  };
+
+  const showNextSlide = () => {
+    setActiveSlide((current) => (current + 1) % heroSlides.length);
+  };
+
   return (
     <section
       id="home"
       className="overflow-hidden bg-[#f5f1ea] text-[#24211d]"
     >
       <div className="mx-auto max-w-[1800px] px-5 pb-8 pt-8 sm:px-8 lg:px-10 lg:pb-10 lg:pt-11">
-        <div className="grid min-h-[760px] border-b border-[#24211d]/15 xl:grid-cols-[0.75fr_1.45fr_0.95fr]">
+        <div className="grid min-h-[760px]  xl:grid-cols-[0.75fr_1.45fr_0.95fr]">
           {/* მარცხენა ნაწილი */}
 
           <div className="relative flex flex-col border-[#24211d]/15 pb-12 xl:border-r xl:pr-10">
@@ -64,25 +96,47 @@ export default function Hero() {
 
           <div className="relative min-h-[520px] overflow-hidden border-[#24211d]/15 xl:mx-9 xl:min-h-full xl:border-r">
             <img
-              src="/hero.jpg"
+              src={heroSlides[0]}
               alt="ხელოსნის მიერ დამზადებული თანამედროვე სამზარეულო"
-              className="absolute inset-0 h-full w-full object-cover"
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none ${
+                activeSlide === 0 ? "opacity-100" : "opacity-0"
+              }`}
             />
+
+            {heroSlides.slice(1).map((slide, index) => {
+              const slideIndex = index + 1;
+
+              return (
+                <img
+                  key={slide}
+                  src={slide}
+                  alt={`AIRO kitchen project ${slideIndex + 1}`}
+                  loading="lazy"
+                  aria-hidden={slideIndex !== activeSlide}
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none ${
+                    slideIndex === activeSlide ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              );
+            })}
 
             <div className="absolute inset-0 bg-black/[0.04]" />
 
             <div className="absolute left-6 top-6 flex w-[calc(100%-48px)] items-center justify-between text-[9px] font-semibold uppercase tracking-[0.2em] text-white">
               <span>ინდივიდუალური დიზაინი</span>
-              <span>01 / 06</span>
+              <span aria-live="polite">
+                {String(activeSlide + 1).padStart(2, "0")} / 06
+              </span>
             </div>
 
             <div className="absolute bottom-5 left-6 text-[74px] font-light leading-none text-white/35 sm:text-[96px]">
-              01
+              {String(activeSlide + 1).padStart(2, "0")}
             </div>
 
             <div className="absolute bottom-5 right-5 flex gap-2">
               <button
                 type="button"
+                onClick={showPreviousSlide}
                 aria-label="წინა პროექტი"
                 className="flex h-12 w-12 items-center justify-center border border-white/45 bg-black/10 text-xl text-white backdrop-blur-sm transition hover:bg-white hover:text-black"
               >
@@ -91,6 +145,7 @@ export default function Hero() {
 
               <button
                 type="button"
+                onClick={showNextSlide}
                 aria-label="შემდეგი პროექტი"
                 className="flex h-12 w-12 items-center justify-center border border-white/45 bg-black/10 text-xl text-white backdrop-blur-sm transition hover:bg-white hover:text-black"
               >

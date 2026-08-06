@@ -1,27 +1,57 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const navLinks = [
-  { label: "მთავარი", href: "#home" },
-  { label: "ნამუშევრები", href: "#projects" },
-  { label: "მომსახურება", href: "#services" },
-  { label: "ჩვენ შესახებ", href: "#about" },
-  { label: "კონტაქტი", href: "#contact" },
+  { label: "მთავარი", href: "/#home" },
+  { label: "ნამუშევრები", href: "/#projects" },
+  { label: "მომსახურება", href: "/#process" },
+  { label: "ჩვენ შესახებ", href: "/#home" },
+  { label: "კონტაქტი", href: "/#contact" },
 ];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateHeader = () => setIsScrolled(window.scrollY > 40);
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, []);
 
   return (
-    <header className="relative z-50 bg-[#f5f1ea]">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 bg-[#f5f1ea]/95 backdrop-blur-md transition-[box-shadow] duration-300 ${
+        isScrolled ? "shadow-[0_8px_30px_rgba(36,33,29,0.09)]" : "shadow-none"
+      }`}
+    >
       <div className="mx-auto max-w-[1800px] px-5 sm:px-8 lg:px-10">
-        <div className="flex min-h-24 items-center justify-between border-b border-[#26231f]/15">
-          <Link href="/" className="flex flex-col">
-            <span className="text-[25px] font-semibold tracking-[0.32em] text-[#24211d]">
-              A I R O
-            </span>
+        <div
+          className={`flex items-center justify-between border-b transition-[min-height,border-color] duration-300 ease-out ${
+            isScrolled
+              ? "min-h-16 border-transparent"
+              : "min-h-20 border-[#26231f]/15"
+          }`}
+        >
+          <Link href="/" aria-label="AIRO მთავარი გვერდი" className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="AIRO"
+              width={197}
+              height={50}
+              priority
+              className={`h-auto transition-[width] duration-300 ease-out ${
+                isScrolled
+                  ? "w-[125px] sm:w-[145px]"
+                  : "w-[145px] sm:w-[165px]"
+              }`}
+            />
           </Link>
 
           <nav className="hidden items-center gap-9 xl:flex">
@@ -37,8 +67,10 @@ export default function Header() {
           </nav>
 
           <Link
-            href="#contact"
-            className="hidden min-h-14 items-center gap-8 bg-[#a86f4d] px-7 text-[12px] font-semibold text-white transition-colors hover:bg-[#8e593b] md:flex"
+            href="/#contact"
+            className={`hidden items-center gap-8 bg-[#a86f4d] px-7 text-[12px] font-semibold text-white transition-[min-height,background-color] duration-300 hover:bg-[#8e593b] md:flex ${
+              isScrolled ? "min-h-12" : "min-h-14"
+            }`}
           >
             შეკვეთეთ კონსულტაცია
           </Link>
@@ -78,7 +110,7 @@ export default function Header() {
             ))}
 
             <Link
-              href="#contact"
+              href="/#contact"
               onClick={() => setMenuOpen(false)}
               className="mt-5 flex h-14 items-center justify-between bg-[#a86f4d] px-6 text-sm font-medium text-white"
             >

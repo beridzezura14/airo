@@ -34,7 +34,7 @@ export default function Process() {
     <section id="process" className="bg-[#f5f1ea] text-[#24211d]">
       <div className="mx-auto max-w-[1800px] px-5 py-24 sm:px-8 lg:px-10 lg:py-28">
         {/* Section heading */}
-        <div className="mb-16 flex flex-col gap-8 border-b border-black/10 pb-9 lg:mb-20 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-16 flex flex-col gap-8 border-b border-black/10 pb-9 lg:mb-20 lg:flex-row lg:items-end lg:justify-between ">
           <div>
             <span className="text-xs uppercase tracking-[0.25em] text-[#9b7458]">
 
@@ -52,14 +52,14 @@ export default function Process() {
         </div>
 
         {/* Process rows */}
-        <div className="overflow-hidden border border-black/10">
+        <div className="overflow-hidden border border-black/10  rounded-xl">
           {steps.map((step, index) => {
             const imageOnRight = index % 2 !== 0;
 
             return (
               <article
                 key={step.id}
-                className="grid min-h-[560px] border-b border-black/10 last:border-b-0 lg:grid-cols-2"
+                className="grid min-h-[560px] border-b border-black/10 last:border-b-0 lg:grid-cols-2 "
               >
                 {/* Image */}
                 <div
@@ -77,7 +77,7 @@ export default function Process() {
 
                   <div className="absolute inset-0 bg-black/[0.03]" />
 
-                  <span className="absolute left-6 top-6 text-xs font-medium tracking-[0.2em] text-white">
+                  <span className="absolute left-6 top-6 text-xs font-medium tracking-[0.2em] text-white font-dachi">
                     ეტაპი {step.id}
                   </span>
                 </div>

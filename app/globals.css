@@ -20,6 +20,40 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Keep the interface soft and consistent across every page. */
+button,
+input,
+textarea,
+select,
+a[class*="bg-"],
+a[class*="min-h-"][class*="border"] {
+  border-radius: 0.75rem;
+}
+
+/* Round the complete media frame so backgrounds, borders and overlays
+   cannot remain visible outside the photo's corners. */
+[class*="overflow-hidden"]:has(> img) {
+  border-radius: 1.125rem;
+}
+
+[class*="overflow-hidden"]:has(> img) > img {
+  border-radius: inherit;
+}
+
+/* Project photos are clipped by the rounded card instead of looking like
+   a separate rounded tile inside it. */
+.project-card .project-slider [class*="overflow-hidden"]:has(> img),
+.project-card .project-slider [class*="overflow-hidden"]:has(> img) > img {
+  border-radius: 0;
+}
+
+/* The process section intentionally keeps its original architectural,
+   square-edged layout. */
+#process,
+#process * {
+  border-radius: 0;
+}
+
 @font-face {
   font-family: "Dachi";
   src: url("/font/Dachi.otf") format("opentype");

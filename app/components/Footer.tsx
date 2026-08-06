@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const navigation = [
   { label: "მთავარი", href: "#home" },
@@ -15,14 +16,14 @@ export default function Footer() {
         <div className="border-b border-white/15 py-16 lg:py-20">
           <div className="grid gap-14 lg:grid-cols-[1.3fr_0.7fr_0.8fr]">
             <div>
-              <Link href="/" className="inline-flex flex-col">
-                <span className="text-4xl lg:text-7xl font-semibold tracking-[0.32em]">
-                  A I R O
-                </span>
-
-                <span className="mt-2 text-[11px] tracking-[0.12em] text-white/50">
-                  სამზარეულოს ავეჯის სახელოსნო
-                </span>
+              <Link href="/" aria-label="AIRO მთავარი გვერდი" className="inline-flex">
+                <Image
+                  src="/logo-dark.png"
+                  alt="AIRO"
+                  width={295}
+                  height={75}
+                  className="h-auto w-[220px] sm:w-[280px]"
+                />
               </Link>
 
               {/* <h2 className="mt-12 max-w-2xl text-4xl font-medium leading-[1.05] tracking-[-0.035em] sm:text-5xl lg:text-6xl">
