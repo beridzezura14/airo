@@ -69,7 +69,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   {project.location} · {project.year}
                 </p>
 
-                <h1 className="mt-5 max-w-5xl text-5xl  font-dachi leading-[0.98] tracking-[-0.05em] sm:text-6xl">
+                <h1 className="mt-5 max-w-5xl text-3xl font-dachi leading-[0.98] tracking-[-0.05em] sm:text-6xl">
                   {project.title}
                 </h1>
               </div>
