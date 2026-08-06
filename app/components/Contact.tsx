@@ -9,7 +9,7 @@ export default function Contact() {
 
             </span>
 
-            <h2 className="mt-5 max-w-3xl text-5xl font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+            <h2 className="mt-5 max-w-3xl text-5xl font-dachi leading-[1.05] tracking-[-0.04em] sm:text-6xl">
               მოგვწერეთ ან დაგვირეკეთ
               <span className="block font-serif italic text-[#a06f50]">
                 

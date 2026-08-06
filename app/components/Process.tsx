@@ -40,7 +40,7 @@ export default function Process() {
 
             </span>
 
-            <h2 className="mt-5 text-5xl font-medium leading-none sm:text-6xl lg:text-7xl">
+            <h2 className="mt-5 text-5xl font-dachi leading-none sm:text-6xl">
               როგორ ვმუშაობთ
             </h2>
           </div>
@@ -99,7 +99,7 @@ export default function Process() {
                   </div>
 
                   <div className="mt-16">
-                    <h3 className="max-w-xl text-3xl font-medium leading-tight tracking-[-0.03em] sm:text-4xl xl:text-5xl">
+                    <h3 className="max-w-xl text-3xl font-dachi leading-tight tracking-[-0.03em] sm:text-4xl xl:text-5xl">
                       {step.title}
                     </h3>
 

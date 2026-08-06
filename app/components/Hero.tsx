@@ -32,7 +32,7 @@ export default function Hero() {
           <div className="relative flex flex-col border-[#24211d]/15 pb-12 xl:border-r xl:pr-10">
 
             <div className="my-auto py-16 xl:py-10">
-              <h1 className="max-w-[500px] text-[50px] font-medium leading-[1.02] tracking-[-0.045em] sm:text-7xl">
+              <h1 className="max-w-[500px] text-[50px] font-dachi leading-[1.02] tracking-[-0.045em] sm:text-7xl">
                 ყველაფერი იწყება აქ
               </h1>
 
@@ -110,7 +110,7 @@ export default function Hero() {
                 ჩვენი მიდგომა
               </p>
 
-              <h2 className="mt-5 text-3xl font-medium tracking-[-0.025em] sm:text-4xl">
+              <h2 className="mt-5 text-3xl font-dachi tracking-[-0.025em] sm:text-4xl">
                 იდეიდან შედეგამდე
               </h2>
 

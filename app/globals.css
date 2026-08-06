@@ -19,3 +19,13 @@ button,
 a {
   -webkit-tap-highlight-color: transparent;
 }
+
+@font-face {
+  font-family: "Dachi";
+  src: url("/font/Dachi.otf") format("opentype");
+  font-display: swap;
+}
+
+.font-dachi {
+  font-family: "Dachi", sans-serif;
+}

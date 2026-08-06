@@ -23,7 +23,7 @@ export default function Projects() {
 
             </span>
 
-            <h2 className="mt-5 text-5xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+            <h2 className="mt-5 text-5xl font-dachi leading-[1.02] tracking-[-0.04em] sm:text-6xl">
               ჩვენი ნამუშევრები
             </h2>
           </div>
@@ -113,7 +113,7 @@ export default function Projects() {
                     </p>
                   </div>
 
-                  <h3 className="mt-4 text-2xl font-medium leading-tight tracking-[-0.025em]">
+                  <h3 className="mt-4 text-2xl font-dachi leading-tight tracking-[-0.025em]">
                     {project.title}
                   </h3>
 
