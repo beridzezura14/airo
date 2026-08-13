@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const heroSlides = [
   "/hero.jpg",
@@ -57,7 +59,7 @@ export default function Hero() {
       id="home"
       className="overflow-hidden bg-[#f5f1ea] text-[#24211d]"
     >
-      <div className="mx-auto max-w-[1800px] px-5 pb-8 pt-8 sm:px-8 lg:px-10 lg:pb-10 lg:pt-11">
+      <div className="mx-auto max-w-[1800px] px-4 pb-8 pt-8 sm:px-8 lg:px-10 lg:pb-10 lg:pt-11">
         <div className="grid min-h-[760px]  xl:grid-cols-[0.75fr_1.45fr_0.95fr]">
           {/* მარცხენა ნაწილი */}
 
@@ -77,14 +79,14 @@ export default function Hero() {
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="#projects"
-                  className="flex min-h-14 items-center justify-between gap-10 bg-[#a86f4d] px-7 text-[13px] font-semibold text-white transition hover:bg-[#8e593b]"
+                  className="flex min-h-14 items-center justify-between gap-4 bg-[#a86f4d] px-5 text-[13px] font-semibold text-white transition hover:bg-[#8e593b] min-[360px]:gap-8 min-[360px]:px-7"
                 >
                   ნამუშევრების ნახვა
                 </Link>
 
                 <Link
                   href="#contact"
-                  className="flex min-h-14 items-center justify-between gap-8 border border-[#24211d]/20 px-7 text-[13px] font-semibold transition hover:border-[#24211d] hover:bg-white/40"
+                  className="flex min-h-14 items-center justify-between gap-4 border border-[#24211d]/20 px-5 text-[13px] font-semibold transition hover:border-[#24211d] hover:bg-white/40 min-[360px]:gap-8 min-[360px]:px-7"
                 >
                   კონტაქტი
                 </Link>
@@ -95,34 +97,19 @@ export default function Hero() {
           {/* ცენტრალური ფოტო */}
 
           <div className="relative min-h-[520px] overflow-hidden border-[#24211d]/15 xl:mx-9 xl:min-h-full xl:border-r">
-            <img
-              src={heroSlides[0]}
-              alt="ხელოსნის მიერ დამზადებული თანამედროვე სამზარეულო"
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none ${
-                activeSlide === 0 ? "opacity-100" : "opacity-0"
-              }`}
+            <Image
+              key={heroSlides[activeSlide]}
+              src={heroSlides[activeSlide]}
+              alt={`AIRO-ს სამზარეულოს პროექტი ${activeSlide + 1}`}
+              fill
+              preload={activeSlide === 0}
+              sizes="(max-width: 1279px) 100vw, 46vw"
+              className="hero-slide object-cover"
             />
-
-            {heroSlides.slice(1).map((slide, index) => {
-              const slideIndex = index + 1;
-
-              return (
-                <img
-                  key={slide}
-                  src={slide}
-                  alt={`AIRO kitchen project ${slideIndex + 1}`}
-                  loading="lazy"
-                  aria-hidden={slideIndex !== activeSlide}
-                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none ${
-                    slideIndex === activeSlide ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              );
-            })}
 
             <div className="absolute inset-0 bg-black/[0.04]" />
 
-            <div className="absolute left-6 top-6 flex w-[calc(100%-48px)] items-center justify-between text-[9px] font-semibold uppercase tracking-[0.2em] text-white">
+            <div className="absolute left-4 top-4 flex w-[calc(100%-32px)] items-center justify-between gap-3 text-[8px] font-semibold uppercase tracking-[0.14em] text-white min-[360px]:left-6 min-[360px]:top-6 min-[360px]:w-[calc(100%-48px)] min-[360px]:text-[9px] min-[360px]:tracking-[0.2em]">
               <span>ინდივიდუალური დიზაინი</span>
               <span aria-live="polite">
                 {String(activeSlide + 1).padStart(2, "0")} / 06
@@ -138,18 +125,18 @@ export default function Hero() {
                 type="button"
                 onClick={showPreviousSlide}
                 aria-label="წინა პროექტი"
-                className="flex h-12 w-12 items-center justify-center border border-white/45 bg-black/10 text-xl text-white backdrop-blur-sm transition hover:bg-white hover:text-black"
+                className="flex h-12 w-12 items-center justify-center border border-white/45 bg-black/10 p-0 text-white backdrop-blur-sm transition hover:bg-white hover:text-black"
               >
-                ←
+                <ChevronLeft aria-hidden="true" size={26} strokeWidth={1.8} />
               </button>
 
               <button
                 type="button"
                 onClick={showNextSlide}
                 aria-label="შემდეგი პროექტი"
-                className="flex h-12 w-12 items-center justify-center border border-white/45 bg-black/10 text-xl text-white backdrop-blur-sm transition hover:bg-white hover:text-black"
+                className="flex h-12 w-12 items-center justify-center border border-white/45 bg-black/10 p-0 text-white backdrop-blur-sm transition hover:bg-white hover:text-black"
               >
-                →
+                <ChevronRight aria-hidden="true" size={26} strokeWidth={1.8} />
               </button>
             </div>
           </div>

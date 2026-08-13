@@ -3,6 +3,9 @@ export type Project = {
   title: string;
   location: string;
   year: string;
+  area: string;
+  duration: string;
+  priceRange: string;
   materials: string[];
   images: string[];
   description: string;
@@ -14,6 +17,9 @@ export const projects: Project[] = [
     title: "თბილი ხის სამზარეულო",
     location: "თბილისი, საბურთალო",
     year: "2026",
+    area: "18 მ²",
+    duration: "25–30 სამუშაო დღე",
+    priceRange: "₾12,000–₾16,000",
     materials: ["MDF", "EGGER", "BLUM"],
     images: ["/project1.jpg", "/project3.jpg", "/project4.jpg", "/project5.jpg", "/project6.jpg"],
     description:
@@ -24,6 +30,9 @@ export const projects: Project[] = [
     title: "ნათელი მინიმალისტური სამზარეულო",
     location: "თბილისი, ვაკე",
     year: "2026",
+    area: "14 მ²",
+    duration: "20–25 სამუშაო დღე",
+    priceRange: "₾10,000–₾14,000",
     materials: ["MDF", "აკრილი", "HETTICH"],
     images: ["/project4.jpg", "/project5.jpg", "/project3.jpg"],
     description:
@@ -34,6 +43,9 @@ export const projects: Project[] = [
     title: "მუქი ტონების სამზარეულო",
     location: "თბილისი, დიღომი",
     year: "2025",
+    area: "20 მ²",
+    duration: "25–35 სამუშაო დღე",
+    priceRange: "₾15,000–₾20,000",
     materials: ["EGGER", "HPL", "BLUM"],
     images: ["/project7.jpg", "/project11.jpg", "/project12.jpg"],
     description:
@@ -44,6 +56,9 @@ export const projects: Project[] = [
     title: "თანამედროვე კუთხის სამზარეულო",
     location: "რუსთავი",
     year: "2025",
+    area: "11 მ²",
+    duration: "18–24 სამუშაო დღე",
+    priceRange: "₾8,000–₾12,000",
     materials: ["MDF", "Kronospan", "HETTICH"],
     images: ["/project8.jpg", "/project9.jpg", "/project10.jpg"],
     description:
@@ -54,6 +69,9 @@ export const projects: Project[] = [
     title: "ხისა და თეთრი ფერის კომბინაცია",
     location: "თბილისი, გლდანი",
     year: "2025",
+    area: "16 მ²",
+    duration: "22–28 სამუშაო დღე",
+    priceRange: "₾11,000–₾15,000",
     materials: ["EGGER", "MDF", "BLUM"],
     images: ["/project9.jpg", "/project11.jpg", "/project12.jpg", "/project13.jpg", "/project10.jpg"],
     description:
@@ -64,6 +82,9 @@ export const projects: Project[] = [
     title: "პატარა სივრცის სამზარეულო",
     location: "თბილისი, ისანი",
     year: "2025",
+    area: "9 მ²",
+    duration: "15–20 სამუშაო დღე",
+    priceRange: "₾7,000–₾10,000",
     materials: ["MDF", "ლამინატი", "HETTICH"],
     images: ["/project6.jpg", "/project2.jpg", "/project3.jpg"],
     description:

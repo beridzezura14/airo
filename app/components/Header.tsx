@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 
 const navLinks = [
   { label: "მთავარი", href: "/#home" },
-  { label: "ნამუშევრები", href: "/#projects" },
+  { label: "ნამუშევრები", href: "/projects" },
   { label: "მომსახურება", href: "/#process" },
-  { label: "ჩვენ შესახებ", href: "/#home" },
+  { label: "ჩვენ შესახებ", href: "/about" },
   { label: "კონტაქტი", href: "/#contact" },
 ];
 
@@ -31,7 +31,7 @@ export default function Header() {
         isScrolled ? "shadow-[0_8px_30px_rgba(36,33,29,0.09)]" : "shadow-none"
       }`}
     >
-      <div className="mx-auto max-w-[1800px] px-5 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1800px] px-4 sm:px-8 lg:px-10">
         <div
           className={`flex items-center justify-between border-b transition-[min-height,border-color] duration-300 ease-out ${
             isScrolled
@@ -48,8 +48,8 @@ export default function Header() {
               priority
               className={`h-auto transition-[width] duration-300 ease-out ${
                 isScrolled
-                  ? "w-[125px] sm:w-[145px]"
-                  : "w-[145px] sm:w-[165px]"
+                  ? "w-[112px] min-[360px]:w-[125px] sm:w-[145px]"
+                  : "w-[125px] min-[360px]:w-[145px] sm:w-[165px]"
               }`}
             />
           </Link>

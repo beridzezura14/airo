@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProjectById, projects } from "../../data/projects";
 import ProjectGallery from "../../components/ProjectGallery";
@@ -30,12 +31,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const nextProject =
     currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
-  const [coverImage, ...galleryImages] = project.images;
+  const coverImage = project.images[0];
 
   return (
     <main className="min-h-screen bg-[#f3efe8] text-[#24211d]">
       {/* Top bar */}
-      <div className="mx-auto flex max-w-[1800px] items-center justify-between px-5 py-6 sm:px-8 lg:px-10">
+      <div className="mx-auto flex max-w-[1800px] flex-wrap items-center justify-between gap-3 px-4 py-5 sm:px-8 sm:py-6 lg:px-10">
         <Link
           href="/#projects"
           className="group inline-flex items-center gap-3 text-sm text-[#716a61]"
@@ -52,17 +53,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </div>
 
       {/* Main cover */}
-      <section className="mx-auto max-w-[1800px] px-5 sm:px-8 lg:px-10">
-        <div className="relative min-h-[620px] overflow-hidden lg:min-h-[780px]">
-          <img
+      <section className="mx-auto max-w-[1800px] px-4 sm:px-8 lg:px-10">
+        <div className="relative min-h-[560px] overflow-hidden sm:min-h-[620px] lg:min-h-[780px]">
+          <Image
             src={coverImage}
             alt={project.title}
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            preload
+            sizes="(max-width: 1800px) 100vw, 1800px"
+            className="object-cover"
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/10" />
 
-          <div className="absolute inset-x-0 bottom-0 z-10 p-6 text-white sm:p-10 lg:p-14">
+          <div className="absolute inset-x-0 bottom-0 z-10 p-4 text-white min-[360px]:p-5 sm:p-10 lg:p-14">
             <div className="grid gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.25em] text-white/65">
@@ -86,7 +90,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
 
       {/* Overview */}
-      <section className="mx-auto max-w-[1800px] px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+      <section className="mx-auto max-w-[1800px] px-4 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-28">
         <div className="grid gap-14 border-b border-black/10 pb-20 lg:grid-cols-[0.55fr_1.45fr]">
           <div>
             <span className="text-[10px]  font-dachi uppercase tracking-[0.24em] text-[#a06f50]">
@@ -100,7 +104,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </p>
 
             <div className="border-t border-black/10 pt-7 xl:border-l xl:border-t-0 xl:pl-10 xl:pt-0">
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 gap-6 min-[360px]:grid-cols-2 min-[360px]:gap-8">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.2em] text-[#948c83]">
                     მდებარეობა
@@ -116,6 +120,35 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
                   <p className="mt-3 text-lg">{project.year}</p>
                 </div>
+
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#948c83]">
+                    ფართობი
+                  </p>
+
+                  <p className="mt-3 text-lg">{project.area}</p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#948c83]">
+                    შესრულების დრო
+                  </p>
+
+                  <p className="mt-3 text-lg leading-7">{project.duration}</p>
+                </div>
+              </div>
+
+              <div className="mt-8 border-t border-black/10 pt-7">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#948c83]">
+                  სავარაუდო ფასის დიაპაზონი
+                </p>
+
+                <p className="mt-3 font-dachi text-2xl text-[#a06f50]">
+                  {project.priceRange}
+                </p>
+                <p className="mt-2 text-xs leading-6 text-[#8a8279]">
+                  საორიენტაციო ღირებულება — საბოლოო ფასი განისაზღვრება აზომვის, მასალებისა და ფურნიტურის შერჩევის შემდეგ.
+                </p>
               </div>
 
               <div className="mt-10 border-t border-black/10 pt-7">
@@ -141,8 +174,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
       {/* Gallery */}
       {project.images.length > 0 && (
-        <section className="mx-auto max-w-[1800px] px-5 pb-24 sm:px-8 lg:px-10 lg:pb-32">
-          <div className="mb-10 flex items-end justify-between border-b border-black/10 pb-6">
+        <section className="mx-auto max-w-[1800px] px-4 pb-20 sm:px-8 sm:pb-24 lg:px-10 lg:pb-32">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-black/10 pb-6">
             <div>
               <span className="text-[10px] uppercase tracking-[0.24em] text-[#a06f50]  font-dachi">
                 დეტალები
@@ -167,7 +200,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       )}
       {/* Previous / Next */}
       <section className="bg-[#f5f1ea] text-[#24211d]">
-        <div className="mx-auto max-w-[1800px] px-5 py-20 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-[1800px] px-4 py-16 sm:px-8 sm:py-20 lg:px-10">
           <div className="border-t border-black/10 pt-10">
             <p className="mb-8 text-xs uppercase tracking-[0.25em] text-[#9b7458]">
               სხვა პროექტები
@@ -180,7 +213,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   href={`/projects/${previousProject.id}`}
                   className="group border border-black/10 bg-white p-8 transition duration-300 hover:border-[#a06f50] hover:shadow-lg"
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap items-center justify-between gap-4">
                     <div>
                       <p className="text-xs uppercase tracking-[0.2em] text-[#9b7458]">
                         ← წინა პროექტი
@@ -204,7 +237,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   href={`/projects/${nextProject.id}`}
                   className="group border border-black/10 bg-white p-8 transition duration-300 hover:border-[#a06f50] hover:shadow-lg"
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap items-center justify-between gap-4">
                     <span className="text-6xl font-light text-[#d7c2af]">
                       {nextProject.id}
                     </span>
@@ -227,7 +260,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
       {/* CTA */}
       <section className="bg-[#24211d] text-[#f5f1ea]">
-        <div className="mx-auto grid max-w-[1800px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:px-10 lg:py-24">
+        <div className="mx-auto grid max-w-[1800px] gap-10 px-4 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:px-10 lg:py-24">
           <div>
             <span className="text-[10px] uppercase tracking-[0.24em] text-[#c69a7b]">
               თქვენი პროექტი
@@ -242,7 +275,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className="lg:flex lg:justify-end">
             <Link
               href="/#contact"
-              className="flex min-h-16 w-full items-center justify-between bg-[#a06f50] px-7 text-sm font-medium text-white transition hover:bg-[#b47d5a] sm:w-fit sm:min-w-[280px]"
+              className="flex min-h-16 w-full items-center justify-between gap-4 bg-[#a06f50] px-5 text-sm font-medium text-white transition hover:bg-[#b47d5a] sm:w-fit sm:min-w-[280px] sm:px-7"
             >
               პროექტის განხილვა
               <span className="text-xl">→</span>

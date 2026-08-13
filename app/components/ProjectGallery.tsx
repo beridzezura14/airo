@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 
 type ProjectGalleryProps = {
@@ -60,10 +61,12 @@ export default function ProjectGallery({
             aria-label={`${title} — ფოტო ${index + 1} გადიდება`}
             className="group relative aspect-[4/3] cursor-zoom-in overflow-hidden bg-[#ddd6cc] p-0 text-left"
           >
-            <img
+            <Image
               src={image}
               alt={`${title} — ფოტო ${index + 1}`}
-              className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+              fill
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+              className="object-cover transition duration-700 group-hover:scale-[1.04]"
             />
             <span className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-black/45 p-0 text-xl leading-none text-white opacity-0 backdrop-blur-sm transition group-hover:opacity-100">
               <ZoomIn aria-hidden="true" size={19} strokeWidth={1.8} />
@@ -97,10 +100,12 @@ export default function ProjectGallery({
           </div>
 
           <div className="relative min-h-0 flex-1 overflow-hidden">
-            <img
+            <Image
               src={images[activeIndex]}
               alt={`${title} — ფოტო ${activeIndex + 1}`}
-              className="h-full w-full object-contain"
+              fill
+              sizes="100vw"
+              className="object-contain"
             />
 
             {images.length > 1 && (
@@ -132,13 +137,19 @@ export default function ProjectGallery({
                 type="button"
                 onClick={() => setActiveIndex(index)}
                 aria-label={`ფოტო ${index + 1}`}
-                className={`h-14 w-20 shrink-0 overflow-hidden border-2 p-0 transition sm:h-16 sm:w-24 ${
+                className={`relative h-14 w-20 shrink-0 overflow-hidden border-2 p-0 transition sm:h-16 sm:w-24 ${
                   index === activeIndex
                     ? "border-white opacity-100"
                     : "border-transparent opacity-50 hover:opacity-90"
                 }`}
               >
-                <img src={image} alt="" className="h-full w-full object-cover" />
+                <Image
+                  src={image}
+                  alt=""
+                  fill
+                  sizes="96px"
+                  className="object-cover"
+                />
               </button>
             ))}
           </div>

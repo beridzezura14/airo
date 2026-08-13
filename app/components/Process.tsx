@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Process() {
   const steps = [
     {
@@ -69,10 +71,12 @@ export default function Process() {
                       : "lg:order-1 lg:border-r lg:border-black/10"
                   }`}
                 >
-                  <img
+                  <Image
                     src={step.image}
                     alt={step.title}
-                    className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-[1.03]"
+                    fill
+                    sizes="(max-width: 1023px) 100vw, 50vw"
+                    className="object-cover transition duration-700 hover:scale-[1.03]"
                   />
 
                   <div className="absolute inset-0 bg-black/[0.03]" />

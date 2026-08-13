@@ -43,7 +43,7 @@ export default function Faq() {
       id="faq"
       className="bg-[#f5f1ea] py-28 text-[#24211d]"
     >
-      <div className="mx-auto max-w-[1700px] px-6">
+      <div className="mx-auto max-w-[1700px] px-4 sm:px-6">
 
         <div className="grid gap-20 lg:grid-cols-[1.3fr_1.3fr]">
 
@@ -65,7 +65,7 @@ export default function Faq() {
                     onClick={() =>
                       setActive(isOpen ? null : index)
                     }
-                    className="flex w-full items-center justify-between py-8 text-left"
+                    className="flex w-full items-center justify-between gap-4 py-7 text-left"
                   >
 
                     <h3 className="text-2xl font-medium">
@@ -73,7 +73,7 @@ export default function Faq() {
                     </h3>
 
                     <span
-                      className={`text-3xl transition ${
+                      className={`shrink-0 text-3xl transition ${
                         isOpen ? "rotate-45" : ""
                       }`}
                     >
@@ -113,7 +113,7 @@ export default function Faq() {
               06
             </span>
 
-            <h2 className="mt-5 text-6xl font-medium leading-none">
+            <h2 className="mt-5 text-6xl font-dachi font-medium leading-none">
               ხშირად დასმული
               კითხვები
             </h2>

@@ -2,17 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 
 const navigation = [
-  { label: "მთავარი", href: "#home" },
-  { label: "ნამუშევრები", href: "#projects" },
-  { label: "პროცესი", href: "#process" },
-  { label: "FAQ", href: "#faq" },
-  { label: "კონტაქტი", href: "#contact" },
+  { label: "მთავარი", href: "/#home" },
+  { label: "ნამუშევრები", href: "/projects" },
+  { label: "პროცესი", href: "/#process" },
+  { label: "FAQ", href: "/faq" },
+  { label: "კონტაქტი", href: "/#contact" },
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-[#24211d] text-[#f5f1ea]">
-      <div className="mx-auto max-w-[1800px] px-6">
+      <div className="mx-auto max-w-[1800px] px-4 sm:px-6">
         <div className="border-b border-white/15 py-16 lg:py-20">
           <div className="grid gap-14 lg:grid-cols-[1.3fr_0.7fr_0.8fr]">
             <div>
@@ -22,7 +22,7 @@ export default function Footer() {
                   alt="AIRO"
                   width={295}
                   height={75}
-                  className="h-auto w-[220px] sm:w-[280px]"
+                  className="h-auto w-[190px] min-[360px]:w-[220px] sm:w-[280px]"
                 />
               </Link>
 
@@ -39,8 +39,8 @@ export default function Footer() {
               </p>
 
               <Link
-                href="#contact"
-                className="mt-9 inline-flex min-h-14 items-center justify-between gap-12 bg-[#a86f4d] px-7 text-sm font-medium text-white transition hover:bg-[#bd805a]"
+                href="/#contact"
+                className="mt-9 flex min-h-14 w-full items-center justify-between gap-4 bg-[#a86f4d] px-5 text-sm font-medium text-white transition hover:bg-[#bd805a] sm:inline-flex sm:w-auto sm:gap-12 sm:px-7"
               >
                 პროექტის განხილვა
                 <span className="text-lg">→</span>
@@ -90,10 +90,10 @@ export default function Footer() {
                   <p className="text-xs text-white/40">ელფოსტა</p>
 
                   <a
-                    href="mailto:info@mesto.ge"
+                    href="mailto:info@airo.ge"
                     className="mt-2 block text-base text-white/75 transition hover:text-white"
                   >
-                    info@mesto.ge
+                    info@airo.ge
                   </a>
                 </div>
 
@@ -137,20 +137,20 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-4 py-6 text-[11px] uppercase tracking-[0.12em] text-white/35 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} MESTO. ყველა უფლება დაცულია.</p>
+          <p>© {new Date().getFullYear()} AIRO. ყველა უფლება დაცულია.</p>
 
-          <div className="flex gap-6">
-            <Link href="#" className="transition hover:text-white">
+          <div className="flex flex-wrap gap-x-6 gap-y-3">
+            <Link href="/privacy" className="transition hover:text-white">
               კონფიდენციალურობა
             </Link>
 
-            <Link href="#" className="transition hover:text-white">
+            <Link href="/terms" className="transition hover:text-white">
               პირობები
             </Link>
           </div>
 
           <a
-            href="#home"
+            href="/#home"
             aria-label="გვერდის დასაწყისში დაბრუნება"
             className="flex items-center gap-3 transition hover:text-white"
           >

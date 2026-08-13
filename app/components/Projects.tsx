@@ -12,10 +12,14 @@ import "swiper/css/pagination";
 
 import { projects } from "../data/projects";
 
-export default function Projects() {
+type ProjectsProps = {
+  showAllButton?: boolean;
+};
+
+export default function Projects({ showAllButton = true }: ProjectsProps) {
   return (
     <section id="projects" className="bg-[#f5f1ea] text-[#24211d]">
-      <div className="mx-auto max-w-[1800px] px-5 py-24 sm:px-8 lg:px-10 lg:py-28">
+      <div className="mx-auto max-w-[1800px] px-4 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-28">
         {/* Section heading */}
         <div className="mb-14 flex flex-col gap-8 border-b border-black/10 pb-10 lg:flex-row lg:items-end lg:justify-between">
           <div>
@@ -146,14 +150,16 @@ export default function Projects() {
           })}
         </div>
 
-        <div className="mt-14 flex justify-center">
-          <Link
-            href="/projects"
-            className="flex min-h-14 items-center justify-between gap-14 border border-black/20 px-7 text-sm font-medium transition hover:border-[#a06f50] hover:bg-[#a06f50] hover:text-white"
-          >
-            ყველა ნამუშევრის ნახვა
-          </Link>
-        </div>
+        {showAllButton && (
+          <div className="mt-14 flex justify-center">
+            <Link
+              href="/projects"
+              className="flex min-h-14 w-full items-center justify-center gap-4 border border-black/20 px-5 text-center text-sm font-medium transition hover:border-[#a06f50] hover:bg-[#a06f50] hover:text-white sm:w-auto sm:gap-14 sm:px-7"
+            >
+              ყველა ნამუშევრის ნახვა
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
